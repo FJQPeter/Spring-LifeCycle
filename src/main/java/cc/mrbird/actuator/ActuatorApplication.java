@@ -104,12 +104,23 @@ public class ActuatorApplication implements ApplicationContextAware {
         serviceA.t1();
     }
 
+    /**
+     * 从容器中删除bean
+     * @param ctx
+     * @param beanName
+     */
     void removeBean(AnnotationConfigServletWebServerApplicationContext ctx, String beanName) {
         BeanDefinitionRegistry beanDefReg = (DefaultListableBeanFactory) ctx.getBeanFactory();
         beanDefReg.getBeanDefinition(beanName);
         beanDefReg.removeBeanDefinition(beanName);
     }
 
+    /**
+     * 往运行中的容器添加一个bean
+     * @param ctx
+     * @param beanName
+     * @param beanClass
+     */
     void addBean(AnnotationConfigServletWebServerApplicationContext ctx, String beanName, Class beanClass) {
         BeanDefinitionRegistry beanDefReg = (DefaultListableBeanFactory) ctx.getBeanFactory();
         BeanDefinitionBuilder beanDefBuilder = BeanDefinitionBuilder.genericBeanDefinition(beanClass);
